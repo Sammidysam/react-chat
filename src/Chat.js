@@ -24,17 +24,10 @@ class Chat extends Component {
         }
     }
 
-    addMessage = (event) => {
-        event.preventDefault()
-
-        const form = event.target
-
+    addMessage = (body) => {
         const messages = [...this.state.messages]
-        messages.push({id: Date.now, userName: "rye", body: form.body.value})
+        messages.push({id: Date.now, userName: "rye", body: body})
         this.setState({messages})
-
-        form.reset()
-        form.body.focus()
     }
 
     render () {
