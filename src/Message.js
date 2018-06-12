@@ -5,9 +5,9 @@ import Metadata from "./Metadata"
 
 const Message = ({message}) => {
     return (
-        <div class="Message">
+        <div class="Message" style={styles.message}>
           <Avatar />
-          <div class="details">
+          <div class="details" style={styles.details}>
             <Metadata />
             <div class="body">
               {message.body}
@@ -15,6 +15,18 @@ const Message = ({message}) => {
           </div>
         </div>
     )    
+}
+
+const styles = {
+    message: {
+        display: "flex",
+        marginTop: "1rem",
+        padding: "0 1rem"
+    },
+    details: {
+        flex: 1,
+        paddingLeft: "0.5rem"
+    }
 }
 
 export default Message
