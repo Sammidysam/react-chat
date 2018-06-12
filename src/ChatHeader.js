@@ -1,16 +1,14 @@
-import React, { Component } from "react"
+import React from "react"
 
-class ChatHeader extends Component {
-    render () {
-        return (
-            <div className="ChatHeader">
-                <div className="roomInfo">
-                    <h2>#{this.props.name}</h2>
-                    <p>{this.props.description}</p>
-                </div>
+const ChatHeader = ({name, description}) => {
+    return (
+        <div className="ChatHeader">
+            <div className="roomInfo">
+                <h2>#{name}</h2>
+                <p>{description}</p>
             </div>
-        )
-    }
+        </div>
+    )    
 }
 
 export default ChatHeader
