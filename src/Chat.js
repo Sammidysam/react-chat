@@ -17,8 +17,7 @@ class Chat extends Component {
     addMessage = (body) => {
         const messages = [...this.state.messages]
         messages.push({id: this.state.messageKey, user: this.props.user, body: body})
-        this.setState({messageKey: this.state.messageKey + 1})
-        this.setState({messages})
+        this.setState({messageKey: this.state.messageKey + 1, messages})
     }
 
     render () {
