@@ -9,6 +9,7 @@ class App extends Component {
     super()
 
     this.state = {
+      organization: "XTBC 18",
       user: {
         uid: "234956789432798",
         userName: "Sammidysam",
@@ -20,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Main user={this.state.user} />
+        <Main organization={this.state.organization} user={this.state.user} />
       </div>
     )
   }

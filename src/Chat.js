@@ -23,7 +23,7 @@ class Chat extends Component {
     render () {
         return (
             <div className="Chat" style={styles.chat}>
-                <ChatHeader name="general" description="Announcements and general chat" />
+                <ChatHeader room={this.props.room} />
 
                 <MessageList messages={this.state.messages} />
 

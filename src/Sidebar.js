@@ -4,11 +4,11 @@ import RoomList from "./RoomList"
 import UserInfo from "./UserInfo"
 
 // Avatar missing background image!
-const Sidebar = ({user}) => {
+const Sidebar = ({user, organization}) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
             <UserInfo style={styles.children} user={user} />
-            <h1 style={{...styles.children, ...styles.h1}}>XTBC 18</h1>
+            <h1 style={{...styles.children, ...styles.h1}}>{organization}</h1>
             <RoomList style={styles.children} />
         </aside>
     )

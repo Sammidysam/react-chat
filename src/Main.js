@@ -4,12 +4,24 @@ import Sidebar from "./Sidebar"
 import Chat from "./Chat"
 
 class Main extends Component {
+    constructor () {
+        super()
+
+        this.state = {
+            room: {
+                id: 0,
+                name: "general",
+                description: "Announcements and general chat"
+            }
+        }
+    }
+
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar user={this.props.user} />
+                <Sidebar organization={this.props.organization} user={this.props.user} />
 
-                <Chat user={this.props.user} />
+                <Chat user={this.props.user} room={this.state.room} />
             </div>
         )
     }
