@@ -1,5 +1,7 @@
 import React from "react"
 
+import Message from "./Message"
+
 const MessageList = () => {
     const messages = [
         {
@@ -16,7 +18,7 @@ const MessageList = () => {
 
     return (
         <div className="MessageList">
-            {messages.map(message => <div key={message.id}>{message.userName}: {message.text}</div>)}
+            {messages.map(message => <Message key={message.id} message={message} />)}
         </div>
     )    
 }
