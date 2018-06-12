@@ -1,10 +1,13 @@
 import React from "react"
+import Moment from "moment"
 
-const Metadata = () => {
+const Metadata = ({message}) => {
+    Moment.locale("en")
+
     return (
         <div class="Metadata" style={styles.metadata}>
-            <div class="user" style={styles.user}>Davey</div>
-            <div class="time" style={styles.time}>1:10 PM</div>
+            <div class="user" style={styles.user}>{message.user.userName}</div>
+            <div class="time" style={styles.time}>{Moment(message.time).format("h:mm a")}</div>
       </div>
     )
 }
