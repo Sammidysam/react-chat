@@ -8,20 +8,28 @@ class Main extends Component {
         super()
 
         this.state = {
-            room: {
-                id: 0,
-                name: "general",
-                description: "Announcements and general chat"
-            }
+            roomId: 0,
+            rooms: [
+                {
+                    id: 0,
+                    name: "general",
+                    description: "Announcements and general chat"
+                },
+                {
+                    id: 1,
+                    name: "random",
+                    description: "Useless banter"
+                }
+            ]
         }
     }
 
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar organization={this.props.organization} user={this.props.user} />
+                <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} />
 
-                <Chat user={this.props.user} room={this.state.room} />
+                <Chat user={this.props.user} room={this.state.rooms[this.state.roomId]} />
             </div>
         )
     }

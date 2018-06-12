@@ -1,12 +1,11 @@
 import React from "react"
 
-const RoomList = ({style}) => {
+const RoomList = ({style, rooms}) => {
     return (
         <nav className="RoomList" style={style}>
             <h2 style={styles.h2}>Rooms</h2>
             <ul style={styles.ul}>
-                <li style={styles.li}><a href="#" style={styles.lia}>general</a></li>
-                <li style={styles.li}><a href="#" style={styles.lia}>random</a></li>
+                {rooms.map(room => <li style={styles.li}><a href="#" style={styles.lia}>{room.name}</a></li>)}
             </ul>
         </nav>
     )
