@@ -3,3 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.RoomList li a::before {
+  content: '# ';
+}
+.RoomList li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
