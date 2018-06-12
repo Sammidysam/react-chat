@@ -1,12 +1,11 @@
 import React from "react"
 
+import Avatar from "./Avatar"
+
 const UserInfo = ({user, style}) => {
     return (
         <div className="UserInfo" style={{...style, ...styles.userInfo}}>
-            <div
-                className="Avatar"
-                style={styles.avatar}
-            ></div>
+            <Avatar style={styles.avatar} />
             <div className="user" style={styles.user}>{user.userName}</div>
             <a href="#" style={styles.a}>
                 <i className="fas fa-sign-out-alt"></i>
@@ -22,13 +21,7 @@ const styles = {
         alignItems: "center"
     },
     avatar: {
-        marginRight: "0.5rem",
-        width: "40px",
-        height: "40px",
-        fontSize: "1rem",
-        borderRadius: "20px",
-        backgroundImage: "url(https://avatars1.githubusercontent.com/u/3077078?s=400&u=241e48febff57a2d9daf4940870f1a0cc84979fc&v=4)",
-        backgroundSize: "cover"
+        marginRight: "0.5rem"
     },
     user: {
         flex: 1
