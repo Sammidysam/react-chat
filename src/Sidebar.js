@@ -1,20 +1,13 @@
 import React from "react"
 
 import RoomList from "./RoomList"
+import UserInfo from "./UserInfo"
 
 // Avatar missing background image!
 const Sidebar = ({user}) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
-            <div className="UserInfo" style={styles.children}>
-                <div
-                    className="Avatar"
-                ></div>
-                <div className="user">{user.userName}</div>
-                <a href="#">
-                    <i className="fas fa-sign-out-alt"></i>
-                </a>
-            </div>
+            <UserInfo style={styles.children} user={user} />
             <h1 style={{...styles.children, ...styles.h1}}>XTBC 18</h1>
             <RoomList style={styles.children} />
         </aside>
