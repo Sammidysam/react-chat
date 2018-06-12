@@ -3,7 +3,7 @@ import React from "react"
 const Message = ({message}) => {
     return (
         <div className="Message">
-            {message.userName}: {message.body}
+            {message.user.userName}: {message.body}
         </div>
     )    
 }
