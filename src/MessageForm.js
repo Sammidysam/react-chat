@@ -1,8 +1,8 @@
 import React from "react"
 
-const MessageForm = () => {
+const MessageForm = ({submit}) => {
     return (
-        <form className="messageForm">
+        <form className="messageForm" onSubmit={submit}>
             <input type="text" name="body" placeholder="Type a message..." />
             <button type="submit">Send</button>
         </form>

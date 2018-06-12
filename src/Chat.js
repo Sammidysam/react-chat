@@ -24,6 +24,19 @@ class Chat extends Component {
         }
     }
 
+    addMessage = (event) => {
+        event.preventDefault()
+
+        const form = event.target
+
+        const messages = [...this.state.messages]
+        messages.push({id: Date.now, userName: "rye", body: form.body.value})
+        this.setState({messages})
+
+        form.reset()
+        form.body.focus()
+    }
+
     render () {
         return (
             <div className="Chat">
@@ -31,7 +44,7 @@ class Chat extends Component {
 
                 <MessageList messages={this.state.messages} />
 
-                <MessageForm />
+                <MessageForm submit={this.addMessage} />
             </div>
         )
     }
