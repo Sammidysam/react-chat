@@ -5,7 +5,7 @@ import Avatar from "./Avatar"
 const UserInfo = ({user, style}) => {
     return (
         <div className="UserInfo" style={{...style, ...styles.userInfo}}>
-            <Avatar style={styles.avatar} />
+            <Avatar style={styles.avatar} user={user} />
             <div className="user" style={styles.user}>{user.userName}</div>
             <a href="#" style={styles.a}>
                 <i className="fas fa-sign-out-alt"></i>

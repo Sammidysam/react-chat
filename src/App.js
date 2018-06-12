@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       user: {
         uid: "234956789432798",
-        userName: "Sammidysam"
+        userName: "Sammidysam",
+        avatar: "url(https://avatars1.githubusercontent.com/u/3077078?s=400&u=241e48febff57a2d9daf4940870f1a0cc84979fc&v=4)"
       }
     }
   }

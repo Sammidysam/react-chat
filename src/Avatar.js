@@ -1,10 +1,10 @@
 import React from "react"
 
-const Avatar = ({style}) => {
+const Avatar = ({style, user}) => {
     return (
         <div
             className="Avatar"
-            style={{...style, ...styles.avatar}}
+            style={{...style, ...styles.avatar, backgroundImage: user.avatar}}
         ></div>
     )
 }
@@ -15,7 +15,6 @@ const styles = {
         height: "40px",
         fontSize: "1rem",
         borderRadius: "20px",
-        backgroundImage: "url(https://avatars1.githubusercontent.com/u/3077078?s=400&u=241e48febff57a2d9daf4940870f1a0cc84979fc&v=4)",
         backgroundSize: "cover"
     }
 }
