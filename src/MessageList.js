@@ -7,12 +7,12 @@ const MessageList = () => {
         {
             id: 0,
             userName: "Sammidysam",
-            text: "My name is Sam"
+            body: "My name is Sam"
         },
         {
             id: 1,
             userName: "cg505",
-            text: "My name is Chris"
+            body: "My name is Chris"
         }
     ]
 
