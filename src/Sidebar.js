@@ -1,5 +1,6 @@
 import React from "react"
 
+// Avatar missing background image!
 const Sidebar = ({ user }) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
