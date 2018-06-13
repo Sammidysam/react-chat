@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
         fontSize: "1.2rem",
         transition: "color 0.25s ease-out",
+        cursor: "pointer",
         
         ":hover": {
             color: "white"
