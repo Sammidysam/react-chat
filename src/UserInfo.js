@@ -1,15 +1,14 @@
 import React from "react"
 
 import Avatar from "./Avatar"
+import SignOut from "./SignOut"
 
 const UserInfo = ({user, style, logOut}) => {
     return (
         <div className="UserInfo" style={{...style, ...styles.userInfo}}>
             <Avatar style={styles.avatar} user={user} />
             <div className="user" style={styles.user}>{user.userName}</div>
-            <a style={styles.a} onClick={logOut}>
-                <i className="fas fa-sign-out-alt"></i>
-            </a>
+            <SignOut logOut={logOut} />
         </div>
     )
 }
@@ -25,15 +24,7 @@ const styles = {
     },
     user: {
         flex: 1
-    },
-    a: {
-        border: 0,
-        padding: 0,
-        backgroundColor: "transparent",
-        fontSize: "1.2rem",
-        transition: "color 0.25s ease-out"
     }
-    // a:hover missing! (put in index.css)
 }
 
 export default UserInfo
