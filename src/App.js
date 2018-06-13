@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 
 import Main from "./Main"
-import LogIn from "./LogIn"
+import SignIn from "./SignIn"
 
 import "./App.css"
 
@@ -30,7 +30,7 @@ class App extends Component {
 
   render() {
     const isLoggedIn = this.state.user
-    const template = isLoggedIn ? <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} /> : <LogIn submit={this.logIn} />
+    const template = isLoggedIn ? <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} /> : <SignIn submit={this.logIn} />
 
     return (
       <div className="App">
