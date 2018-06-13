@@ -14,19 +14,28 @@ class App extends Component {
     }
   }
 
+  componentWillMount() {
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    if (user)
+      this.setState({ user })
+  }
+
   logIn = (email, name, password) => {
-    this.setState({
-      user: {
-        uid: 4752489574289,
-        email: email,
-        userName: name,
-        avatar: `url(https://api.adorable.io/avatars/40/${email})`
-      }
-    })
+    const user = {
+      uid: 4752489574289,
+      email: email,
+      userName: name,
+      avatar: `url(https://api.adorable.io/avatars/40/${email})`
+    }
+
+    this.setState({ user })
+    localStorage.setItem("user", JSON.stringify(user))
   }
 
   logOut = () => {
     this.setState({ user: null })
+    localStorage.removeItem("user")
   }
 
   render() {
