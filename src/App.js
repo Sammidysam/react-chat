@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 
 import Main from "./Main"
+import LogIn from "./LogIn"
 
 import "./App.css"
 
@@ -10,18 +11,27 @@ class App extends Component {
 
     this.state = {
       organization: "XTBC 18",
-      user: {
-        uid: "234956789432798",
-        userName: "Sammidysam",
-        avatar: "url(https://avatars1.githubusercontent.com/u/3077078?s=400&u=241e48febff57a2d9daf4940870f1a0cc84979fc&v=4)"
-      }
+      user: null
     }
   }
 
+  logIn = (name, password) => {
+    this.setState({
+      user: {
+        uid: 4752489574289,
+        userName: name,
+        avatar: `url(https://api.adorable.io/avatars/40/${name}@gmail.com)`
+      }
+    })
+  }
+
   render() {
+    const isLoggedIn = this.state.user
+    const template = isLoggedIn ? <Main organization={this.state.organization} user={this.state.user} /> : <LogIn submit={this.logIn} />
+
     return (
       <div className="App">
-        <Main organization={this.state.organization} user={this.state.user} />
+        {template}
       </div>
     )
   }
