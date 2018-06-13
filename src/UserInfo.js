@@ -23,7 +23,9 @@ const styles = {
         marginRight: "0.5rem"
     },
     user: {
-        flex: 1
+        flex: 1,
+        overflow: "hidden",
+        textOverflow: "ellipsis"
     }
 }
 
