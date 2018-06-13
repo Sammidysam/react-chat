@@ -16,7 +16,7 @@ class Chat extends Component {
 
     addMessage = (body) => {
         const messages = [...this.state.messages]
-        messages.push({id: this.state.messageKey, user: this.props.user, body: body, time: Date.now()})
+        messages.push({id: this.state.messageKey, user: this.props.user, body: body, time: Date.now(), room: this.props.room})
         this.setState({messageKey: this.state.messageKey + 1, messages})
     }
 
@@ -25,7 +25,7 @@ class Chat extends Component {
             <div className="Chat" style={styles.chat}>
                 <ChatHeader room={this.props.room} />
 
-                <MessageList messages={this.state.messages} room={this.props.room} />
+                <MessageList messages={this.state.messages.filter(x => x.room.id === this.props.room.id)} room={this.props.room} />
 
                 <MessageForm submit={this.addMessage} />
             </div>
