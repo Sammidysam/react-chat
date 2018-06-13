@@ -27,7 +27,7 @@ class Main extends Component {
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} />
+                <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} logOut={this.props.logOut} />
 
                 <Chat user={this.props.user} room={this.state.rooms[this.state.roomId]} />
             </div>

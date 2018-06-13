@@ -10,8 +10,7 @@ class App extends Component {
     super()
 
     this.state = {
-      organization: "XTBC 18",
-      user: null
+      organization: "XTBC 18"
     }
   }
 
@@ -25,9 +24,13 @@ class App extends Component {
     })
   }
 
+  logOut = () => {
+    this.setState({ user: null })
+  }
+
   render() {
     const isLoggedIn = this.state.user
-    const template = isLoggedIn ? <Main organization={this.state.organization} user={this.state.user} /> : <LogIn submit={this.logIn} />
+    const template = isLoggedIn ? <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} /> : <LogIn submit={this.logIn} />
 
     return (
       <div className="App">

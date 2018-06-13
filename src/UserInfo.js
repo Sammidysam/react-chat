@@ -2,12 +2,12 @@ import React from "react"
 
 import Avatar from "./Avatar"
 
-const UserInfo = ({user, style}) => {
+const UserInfo = ({user, style, logOut}) => {
     return (
         <div className="UserInfo" style={{...style, ...styles.userInfo}}>
             <Avatar style={styles.avatar} user={user} />
             <div className="user" style={styles.user}>{user.userName}</div>
-            <a href="#" style={styles.a}>
+            <a style={styles.a} onClick={logOut}>
                 <i className="fas fa-sign-out-alt"></i>
             </a>
         </div>
