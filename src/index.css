@@ -2,16 +2,3 @@ body {
   margin: 0;
   font-family: sans-serif;
 }
-
-.RoomList li a::before {
-  content: '# ';
-}
-.RoomList li a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-.UserInfo a {
-  color: rgba(255, 255, 255, 0.6);
-}
-.UserInfo a:hover {
-  color: white;
-}

@@ -1,17 +1,18 @@
 import React from "react"
+import { StyleSheet, css } from "aphrodite"
 
 const RoomList = ({style, rooms}) => {
     return (
         <nav className="RoomList" style={style}>
-            <h2 style={styles.h2}>Rooms</h2>
-            <ul style={styles.ul}>
-                {rooms.map(room => <li style={styles.li}><a href="#" style={styles.lia}>{room.name}</a></li>)}
+            <h2 className={css(styles.h2)}>Rooms</h2>
+            <ul className={css(styles.ul)}>
+                {rooms.map(room => <li className={css(styles.li)}><a href="#" className={css(styles.lia)}>{room.name}</a></li>)}
             </ul>
         </nav>
     )
 }
 
-const styles = {
+const styles = StyleSheet.create({
     h2: {
         fontSize: "1rem"
     },
@@ -26,9 +27,16 @@ const styles = {
     lia: {
         display: "block",
         color: "whitesmoke",
-        textDecoration: "none"
+        textDecoration: "none",
+
+        "::before": {
+            content: '"# "'
+        },
+
+        ":hover": {
+            backgroundColor: "rgba(255, 255, 255, 0.2)"
+        }
     }
-    // missing a lia before and lia hover (they are in index.css)
-}
+})
 
 export default RoomList
