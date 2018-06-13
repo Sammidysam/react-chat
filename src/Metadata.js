@@ -5,9 +5,9 @@ const Metadata = ({message}) => {
     Moment.locale("en")
 
     return (
-        <div class="Metadata" style={styles.metadata}>
-            <div class="user" style={styles.user}>{message.user.userName}</div>
-            <div class="time" style={styles.time}>{Moment(message.time).format("h:mm a")}</div>
+        <div className="Metadata" style={styles.metadata}>
+            <div className="user" style={styles.user}>{message.user.userName}</div>
+            <div className="time" style={styles.time}>{Moment(message.time).format("h:mm a")}</div>
       </div>
     )
 }
