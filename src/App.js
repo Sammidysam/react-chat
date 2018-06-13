@@ -14,12 +14,13 @@ class App extends Component {
     }
   }
 
-  logIn = (name, password) => {
+  logIn = (email, name, password) => {
     this.setState({
       user: {
         uid: 4752489574289,
+        email: email,
         userName: name,
-        avatar: `url(https://api.adorable.io/avatars/40/${name}@gmail.com)`
+        avatar: `url(https://api.adorable.io/avatars/40/${email})`
       }
     })
   }

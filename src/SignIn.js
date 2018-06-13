@@ -5,6 +5,7 @@ class SignIn extends Component {
         super()
 
         this.state = {
+            email: "",
             name: "",
             password: ""
         }
@@ -13,25 +14,31 @@ class SignIn extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
 
-        this.props.submit(this.state.name, this.state.password)
+        this.props.submit(this.state.email, this.state.name, this.state.password)
         this.setState({
+            email: "",
             name: "",
             password: ""
         })
     }
 
-    handleUsernameChange = (event) => {
-        this.setState({ name: event.target.value })
+    handleEmailChange = (event) => {
+        this.setState({ email: event.target.value })
     }
 
     handlePasswordChange = (event) => {
         this.setState({ password: event.target.value })
     }
 
+    handleNameChange = (event) => {
+        this.setState({ name: event.target.value })
+    }
+
     render () {
         return (
             <form className="SignIn" onSubmit={this.handleSubmit}>
-                <input type="text" name="name" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange} />
+                <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
+                <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleNameChange} />
                 <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
                 <button type="submit">
                     <i className="fas fa-check"></i>
