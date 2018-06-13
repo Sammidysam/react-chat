@@ -32,7 +32,7 @@ class LogIn extends Component {
         return (
             <form className="LogIn" onSubmit={this.handleSubmit}>
                 <input type="text" name="name" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange} />
-                <input type="text" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
+                <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
                 <button type="submit">
                     <i class="fas fa-check"></i>
                 </button>
