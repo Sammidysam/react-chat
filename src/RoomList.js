@@ -1,12 +1,12 @@
 import React from "react"
 import { StyleSheet, css } from "aphrodite"
 
-const RoomList = ({style, rooms}) => {
+const RoomList = ({style, rooms, changeRoom}) => {
     return (
         <nav className="RoomList" style={style}>
             <h2 className={css(styles.h2)}>Rooms</h2>
             <ul className={css(styles.ul)}>
-                {rooms.map(room => <li key={room.id} className={css(styles.li)}><a href="#" className={css(styles.lia)}>{room.name}</a></li>)}
+                {rooms.map(room => <li key={room.id} className={css(styles.li)}><a className={css(styles.lia)} onClick={() => changeRoom(room)}>{room.name}</a></li>)}
             </ul>
         </nav>
     )
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         display: "block",
         color: "whitesmoke",
         textDecoration: "none",
+        cursor: "pointer",
 
         "::before": {
             content: '"# "'
