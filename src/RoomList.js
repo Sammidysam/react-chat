@@ -6,7 +6,7 @@ const RoomList = ({style, rooms}) => {
         <nav className="RoomList" style={style}>
             <h2 className={css(styles.h2)}>Rooms</h2>
             <ul className={css(styles.ul)}>
-                {rooms.map(room => <li className={css(styles.li)}><a href="#" className={css(styles.lia)}>{room.name}</a></li>)}
+                {rooms.map(room => <li key={room.id} className={css(styles.li)}><a href="#" className={css(styles.lia)}>{room.name}</a></li>)}
             </ul>
         </nav>
     )
