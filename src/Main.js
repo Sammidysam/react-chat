@@ -24,6 +24,10 @@ class Main extends Component {
         }
     }
 
+    currentRoom = () => {
+        return this.state.rooms[this.state.roomId]
+    }
+
     changeRoom = (room) => {
         this.setState({ roomId: room.id })
     }
@@ -33,7 +37,7 @@ class Main extends Component {
             <div className="Main" style={styles}>
                 <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} logOut={this.props.logOut} changeRoom={this.changeRoom} />
 
-                <Chat user={this.props.user} room={this.state.rooms[this.state.roomId]} />
+                <Chat user={this.props.user} room={this.currentRoom()} />
             </div>
         )
     }
