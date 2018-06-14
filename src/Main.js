@@ -80,7 +80,7 @@ class Main extends Component {
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} logOut={this.props.logOut} changeRoom={this.changeRoom} />
+                <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} logOut={this.props.logOut} changeRoom={this.changeRoom} addRoom={this.addRoom} />
 
                 <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} />
             </div>
