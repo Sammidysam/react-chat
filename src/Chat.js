@@ -15,21 +15,21 @@ class Chat extends Component {
         }
     }
 
-    componentWillMount () {
-        base.syncState(`${this.props.room.name}/messages`, {
+    configureSync = (location) => {
+        base.syncState(location + "/messages", {
             context: this,
             state: "messages",
             asArray: true
         })
     }
 
+    componentWillMount () {
+        this.configureSync(this.props.room.name)
+    }
+
     shouldComponentUpdate (nextProps, nextState) {
         base.reset()
-        base.syncState(`${nextProps.room.name}/messages`, {
-            context: this,
-            state: "messages",
-            asArray: true
-        })
+        this.configureSync(nextProps.room.name)
 
         return true
     }
