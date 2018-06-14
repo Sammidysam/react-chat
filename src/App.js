@@ -23,13 +23,22 @@ class App extends Component {
       this.setState({ user })
   }
 
-  logIn = (user) => {
+  logIn = (oathUser) => {
+    const user = {
+      uid: oathUser.uid,
+      email: oathUser.email,
+      displayName: oathUser.displayName,
+      photoURL: oathUser.photoURL
+    }
+
     this.setState({ user })
+    localStorage.setItem("user", JSON.stringify(user))
   }
 
   logOut = () => {
     auth.signOut().then(() => {
       this.setState({ user: null })
+      localStorage.removeItem("user")
     })
   }
 
