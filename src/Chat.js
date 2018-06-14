@@ -7,7 +7,7 @@ import MessageForm from "./MessageForm"
 class Chat extends Component {
     inRoom = () => {
         return (
-            <div>
+            <div className="Chat" style={styles.chat}>
                 <ChatHeader room={this.props.room} />
 
                 <MessageList room={this.props.room} />
