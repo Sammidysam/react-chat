@@ -30,6 +30,7 @@ class RoomForm extends Component {
                 messages: []
             }
         })
+        this.props.hideRoomForm()
     }
 
     render () {
