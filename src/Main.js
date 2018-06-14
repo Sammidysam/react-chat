@@ -8,28 +8,30 @@ class Main extends Component {
         super()
 
         this.state = {
-            roomId: 0,
-            rooms: [
-                {
+            currentRoom: "general",
+            rooms: {
+                general: {
                     id: 0,
                     name: "general",
-                    description: "Announcements and general chat"
+                    description: "Announcements and general chat",
+                    messages: []
                 },
-                {
+                random: {
                     id: 1,
                     name: "random",
-                    description: "Useless banter"
+                    description: "Useless banter",
+                    messages: []
                 }
-            ]
+            }
         }
     }
 
     currentRoom = () => {
-        return this.state.rooms[this.state.roomId]
+        return this.state.rooms[this.state.currentRoom]
     }
 
     changeRoom = (room) => {
-        this.setState({ roomId: room.id })
+        this.setState({ currentRoom: room.name })
     }
 
     render () {
