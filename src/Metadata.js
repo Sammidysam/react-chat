@@ -6,7 +6,7 @@ const Metadata = ({message}) => {
 
     return (
         <div className="Metadata" style={styles.metadata}>
-            <div className="user" style={styles.user}>{message.user.userName}</div>
+            <div className="user" style={styles.user}>{message.user.displayName}</div>
             <div className="time" style={styles.time}>{Moment(message.time).format("h:mm a")}</div>
       </div>
     )
