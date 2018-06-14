@@ -1,25 +1,48 @@
-import React from "react"
+import React, { Component } from "react"
 import { StyleSheet, css } from "aphrodite"
 
 import RoomLink from "./RoomLink"
+import RoomForm from "./RoomForm"
 
-const RoomList = ({style, rooms, changeRoom, addRoom}) => {
-    return (
-        <nav className="RoomList" style={style}>
-            <div className={css(styles.heading)}>
-            <h2 className={css(styles.h2)}>Rooms</h2>
-            <button
-                className={css(styles.button)}
-                onClick={() => addRoom({ name: "fancy", description: "for fancy talk" })}
-            >
-                <i className="fas fa-plus-circle" title="Add room"></i>
-            </button>
-            </div>
-            <ul className={css(styles.ul)}>
-                {Object.keys(rooms).map(roomName => <RoomLink key={roomName} room={rooms[roomName]} changeRoom={changeRoom} />)}
-            </ul>
-        </nav>
-    )
+class RoomList extends Component {
+    constructor () {
+        super()
+
+        this.state = {
+            showRoomForm: false
+        }
+    }
+
+    showRoomForm = () => {
+        this.setState({ showRoomForm: true })
+    }
+    
+    hideRoomForm = () => {
+        this.setState({ showRoomForm: false })
+    }
+
+    render () {
+        if (this.state.showRoomForm) {
+            return <RoomForm hideRoomForm={this.hideRoomForm} />
+        } else {
+            return (
+                <nav className="RoomList" style={this.props.style}>
+                    <div className={css(styles.heading)}>
+                    <h2 className={css(styles.h2)}>Rooms</h2>
+                    <button
+                        className={css(styles.button)}
+                        onClick={this.showRoomForm}
+                    >
+                        <i className="fas fa-plus-circle" title="Add room"></i>
+                    </button>
+                    </div>
+                    <ul className={css(styles.ul)}>
+                        {Object.keys(this.props.rooms).map(roomName => <RoomLink key={roomName} room={this.props.rooms[roomName]} changeRoom={this.props.changeRoom} />)}
+                    </ul>
+                </nav>
+            )
+        }
+    }
 }
 
 const styles = StyleSheet.create({
