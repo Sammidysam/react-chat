@@ -8,7 +8,7 @@ const RoomList = ({style, rooms, changeRoom}) => {
         <nav className="RoomList" style={style}>
             <h2 className={css(styles.h2)}>Rooms</h2>
             <ul className={css(styles.ul)}>
-                {Object.keys(rooms).map(roomName => <RoomLink room={rooms[roomName]} changeRoom={changeRoom} />)}
+                {Object.keys(rooms).map(roomName => <RoomLink key={roomName} room={rooms[roomName]} changeRoom={changeRoom} />)}
             </ul>
         </nav>
     )

@@ -3,7 +3,7 @@ import { StyleSheet, css } from "aphrodite"
 
 const RoomLink = ({room, changeRoom}) => {
     return (
-        <li key={room.name} className={css(styles.li)}><a className={css(styles.lia)} onClick={() => changeRoom(room)}>{room.name}</a></li>
+        <li className={css(styles.li)}><a className={css(styles.lia)} onClick={() => changeRoom(room)}>{room.name}</a></li>
     )
 }
 

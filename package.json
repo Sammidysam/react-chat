@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "aphrodite": "^2.2.2",
+    "immutability-helper": "^2.7.0",
     "moment": "^2.22.2",
     "re-base": "^3.2.3",
     "react": "^16.4.0",
