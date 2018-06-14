@@ -12,20 +12,7 @@ class Main extends Component {
 
         this.state = {
             currentRoom: "general",
-            rooms: {
-                general: {
-                    id: 0,
-                    name: "general",
-                    description: "Announcements and general chat",
-                    messages: []
-                },
-                random: {
-                    id: 1,
-                    name: "random",
-                    description: "Useless banter",
-                    messages: []
-                }
-            }
+            rooms: {}
         }
     }
 
