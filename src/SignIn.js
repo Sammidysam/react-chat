@@ -15,7 +15,6 @@ class SignIn extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
 
-        this.props.submit(this.state.email, this.state.name, this.state.password)
         this.setState({
             email: "",
             name: "",
@@ -28,7 +27,7 @@ class SignIn extends Component {
     }
 
     authenticate = () => {
-      auth.signInWithPopup(googleProvider).then(result => this.props.signIn(result.user)).catch(() => console.log("error!"))
+      auth.signInWithPopup(googleProvider).then(result => this.props.submit(result.user)).catch((error) => console.log(error))
     }
 
     render() {

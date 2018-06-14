@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-import { auth } from "base"
+import { auth } from "./base"
 
 import Main from "./Main"
 import SignIn from "./SignIn"
@@ -23,22 +23,13 @@ class App extends Component {
       this.setState({ user })
   }
 
-  logIn = (email, name, password) => {
-    const user = {
-      uid: 4752489574289,
-      email: email,
-      userName: name,
-      avatar: `url(https://api.adorable.io/avatars/40/${email})`
-    }
-
+  logIn = (user) => {
     this.setState({ user })
-    localStorage.setItem("user", JSON.stringify(user))
   }
 
   logOut = () => {
     auth.signOut().then(() => {
       this.setState({ user: null })
-      localStorage.removeItem("user")
     })
   }
 

@@ -4,7 +4,7 @@ const Avatar = ({style, user}) => {
     return (
         <div
             className="Avatar"
-            style={{...style, ...styles.avatar, backgroundImage: user.avatar}}
+            style={{...style, ...styles.avatar, backgroundImage: `url(${user.photoURL}`}}
         ></div>
     )
 }
