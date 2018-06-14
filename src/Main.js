@@ -51,6 +51,7 @@ class Main extends Component {
         const newKey = this.currentRoom().messages ? this.currentRoom().messages.length : 0
         const process = {rooms: {}}
 
+        // Ensure that we can append the messages list by making it exist.
         if (!stateCopy.rooms[currentRoomName].messages)
             stateCopy.rooms[currentRoomName].messages = []
 

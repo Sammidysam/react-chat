@@ -6,23 +6,23 @@ import MessageForm from "./MessageForm"
 
 class Chat extends Component {
     inRoom = () => {
-        return (
-            <div className="Chat" style={styles.chat}>
-                <ChatHeader room={this.props.room} />
+        return [<ChatHeader room={this.props.room} />,
 
-                <MessageList room={this.props.room} />
+                <MessageList room={this.props.room} />,
 
-                <MessageForm submit={this.props.addMessage} />
-            </div>
-        )
+                <MessageForm submit={this.props.addMessage} />]
+    }
+
+    outOfRoom = () => {
+        return [<p>No rooms yet.</p>]
     }
 
     render () {
-        const template = this.props.room ? this.inRoom() : <p>No rooms yet.</p>
+        const templates = this.props.room ? this.inRoom() : this.outOfRoom()
 
         return (
             <div className="Chat" style={styles.chat}>
-                {template}
+                {templates}
             </div>
         )
     }
