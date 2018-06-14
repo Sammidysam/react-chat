@@ -4,19 +4,28 @@ import ChatHeader from "./ChatHeader"
 import MessageList from "./MessageList"
 import MessageForm from "./MessageForm"
 
+import base from "./base"
+
 class Chat extends Component {
     constructor () {
         super()
 
         this.state = {
-            messageKey: 0,
             messages: []
         }
     }
 
+    componentWillMount () {
+        base.syncState(`messages`, {
+            context: this,
+            state: "messages",
+            asArray: true
+        })
+    }
+
     addMessage = (body) => {
         const messages = [...this.state.messages]
-        messages.push({id: this.state.messageKey, user: this.props.user, body: body, time: Date.now(), room: this.props.room})
+        messages.push({id: messages.length, user: this.props.user, body: body, time: Date.now(), room: this.props.room})
         this.setState({messageKey: this.state.messageKey + 1, messages})
     }
 
