@@ -5,26 +5,24 @@ import MessageList from "./MessageList"
 import MessageForm from "./MessageForm"
 
 class Chat extends Component {
-    inRoom = () => {
-        return [<ChatHeader room={this.props.room} />,
-
-                <MessageList room={this.props.room} />,
-
-                <MessageForm submit={this.props.addMessage} />]
-    }
-
-    outOfRoom = () => {
-        return [<p>No rooms yet.</p>]
-    }
-
     render () {
-        const templates = this.props.room ? this.inRoom() : this.outOfRoom()
+        if (this.props.room) {
+            return (
+                <div className="Chat" style={styles.chat}>
+                    <ChatHeader room={this.props.room} />,
 
-        return (
-            <div className="Chat" style={styles.chat}>
-                {templates}
-            </div>
-        )
+                    <MessageList room={this.props.room} />,
+
+                    <MessageForm submit={this.props.addMessage} />
+                </div>
+            )
+        } else {
+            return (
+                <div className="Chat" style={styles.chat}>
+                    <p>No rooms yet.</p>
+                </div>
+            )
+        }
     }
 }
 
