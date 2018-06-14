@@ -46,9 +46,14 @@ class Main extends Component {
     }
 
     addMessage = (body) => {
+        const stateCopy = {...this.state}
         const currentRoomName = this.state.currentRoom
-        const newKey = this.currentRoom().messages.length
+        const newKey = this.currentRoom().messages ? this.currentRoom().messages.length : 0
         const process = {rooms: {}}
+
+        if (!stateCopy.rooms[currentRoomName].messages)
+            stateCopy.rooms[currentRoomName].messages = []
+
         process.rooms[currentRoomName] = {
             messages: {
                 $push: [{
@@ -60,9 +65,15 @@ class Main extends Component {
             }
         }
 
-        const newState = update(this.state, process)
+        const newState = update(stateCopy, process)
 
         this.setState(newState)
+    }
+
+    addRoom = (room) => {
+        const rooms = {...this.state.rooms}
+        rooms[room.name] = room
+        this.setState({rooms, currentRoom: room.name})
     }
 
     render () {

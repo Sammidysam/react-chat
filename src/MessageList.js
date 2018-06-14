@@ -2,7 +2,7 @@ import React from "react"
 
 import Message from "./Message"
 
-const MessageList = ({messages, room}) => {
+const MessageList = ({room}) => {
     return (
         <div className="MessageList" style={styles.messageList}>
             <div className="roomAnnouncement" style={styles.roomAnnouncement}>
@@ -10,7 +10,7 @@ const MessageList = ({messages, room}) => {
                 <p>This is the very beginning of the #{room.name} room.</p>
             </div>
 
-            {room.messages.map(message => <Message key={message.id} message={message} />)}
+            {room.messages && room.messages.map(message => <Message key={message.id} message={message} />)}
         </div>
     )    
 }
