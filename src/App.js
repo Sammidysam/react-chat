@@ -16,11 +16,18 @@ class App extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const user = JSON.parse(localStorage.getItem("user"))
 
     if (user)
       this.setState({ user })
+
+    auth.onAuthStateChanged(user => {
+      if (user)
+        this.logIn(user)
+      else
+        this.handleUnauth()
+    })
   }
 
   logIn = (oathUser) => {
@@ -36,15 +43,17 @@ class App extends Component {
   }
 
   logOut = () => {
-    auth.signOut().then(() => {
-      this.setState({ user: null })
-      localStorage.removeItem("user")
-    })
+    auth.signOut()
+  }
+
+  handleUnauth = () => {
+    this.setState({ user: null })
+    localStorage.removeItem("user")
   }
 
   render() {
     const isLoggedIn = this.state.user
-    const template = isLoggedIn ? <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} /> : <SignIn submit={this.logIn} />
+    const template = isLoggedIn ? <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} /> : <SignIn />
 
     return (
       <div className="App">

@@ -4,26 +4,8 @@ import { StyleSheet, css } from "aphrodite"
 import { auth, googleProvider } from "./base"
 
 class SignIn extends Component {
-    constructor () {
-        super()
-
-        this.state = {
-            email: ""
-        }
-    }
-
     handleSubmit = (event) => {
         event.preventDefault()
-
-        this.setState({
-            email: "",
-            name: "",
-            password: ""
-        })
-    }
-
-    handleChange = (event) => {
-        this.setState({ email: event.target.value })
     }
 
     authenticate = () => {
@@ -45,22 +27,6 @@ class SignIn extends Component {
                 onSubmit={this.handleSubmit}
               >
                 <h1>Welcome!</h1>
-                <label htmlFor="email" className={css(styles.label)}>
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  className={css(styles.input)}
-                  onChange={this.handleChange}
-                  autoFocus
-                />
-                <button type="submit" className={css(styles.button)}>
-                  Sign In
-                </button>
-
-                <div>or</div>
-
                 <button
                   type="button"
                   className={css(styles.button)}
