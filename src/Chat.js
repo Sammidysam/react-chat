@@ -16,20 +16,23 @@ class Chat extends Component {
     }
 
     configureSync = (location) => {
-        base.syncState(location + "/messages", {
+        const binding = base.syncState(location + "/messages", {
             context: this,
             state: "messages",
             asArray: true
         })
+        this.setState({rebaseBinding: binding})
     }
 
-    componentWillMount () {
+    componentDidMount () {
         this.configureSync(this.props.room.name)
     }
 
-    shouldComponentUpdate (nextProps, nextState) {
-        base.reset()
-        this.configureSync(nextProps.room.name)
+    componentDidUpdate (prevProps) {
+        if (prevProps.room.name !== this.props.room.name) {
+            base.removeBinding(this.state.rebaseBinding)
+            this.configureSync(this.props.room.name)
+        }
 
         return true
     }
