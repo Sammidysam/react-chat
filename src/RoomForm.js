@@ -5,24 +5,23 @@ class RoomForm extends Component {
         super()
 
         this.state = {
-            name: "",
-            description: ""
+            room: {
+                name: "",
+                description: "",
+                messages: []
+            }
         }
     }
 
     handleChange = (ev) => {
-        const change = {}
-        change[ev.target.name] = ev.target.value
-        this.setState(change)
+        const room = {...this.state.room}
+        room[ev.target.name] = ev.target.value
+        this.setState({room})
     }
 
     handleSubmit = (ev) => {
         ev.preventDefault()
-        this.props.addRoom({
-            name: this.state.name,
-            description: this.state.description,
-            messages: []
-        })
+        this.props.addRoom(this.state.room)
         this.props.hideRoomForm()
     }
 
@@ -32,11 +31,11 @@ class RoomForm extends Component {
             <form onSubmit={this.handleSubmit}>
               <p>
                 <label htmlFor="name">Room name</label>
-                <input type="text" name="name" value={this.state.name} onChange={this.handleChange} autoFocus />
+                <input type="text" name="name" value={this.state.room.name} onChange={this.handleChange} autoFocus />
               </p>
               <p>
                 <label htmlFor="description">Description</label>
-                <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
+                <input type="text" name="description" value={this.state.room.description} onChange={this.handleChange} />
               </p>
               <div>
                 <button
