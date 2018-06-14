@@ -23,7 +23,7 @@ class RoomList extends Component {
 
     render () {
         if (this.state.showRoomForm) {
-            return <RoomForm hideRoomForm={this.hideRoomForm} />
+            return <RoomForm hideRoomForm={this.hideRoomForm} addRoom={this.props.addRoom} />
         } else {
             return (
                 <nav className="RoomList" style={this.props.style}>
