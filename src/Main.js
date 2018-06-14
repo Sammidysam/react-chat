@@ -24,6 +24,15 @@ class Main extends Component {
         })
     }
 
+    componentDidUpdate (prevProps) {
+        // Check to make sure that our current room is set to something, if it can be.
+        const roomKeys = Object.keys(this.state.rooms)
+
+        if (!this.state.rooms[this.state.currentRoom] && roomKeys.length > 0) {
+            this.setState({ currentRoom: roomKeys[0] })
+        }
+    }
+
     currentRoom = () => {
         return this.state.rooms[this.state.currentRoom]
     }
