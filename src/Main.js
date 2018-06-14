@@ -33,7 +33,7 @@ class Main extends Component {
             <div className="Main" style={styles}>
                 <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} logOut={this.props.logOut} changeRoom={this.changeRoom} />
 
-                <Chat key={this.state.roomId} user={this.props.user} room={this.state.rooms[this.state.roomId]} />
+                <Chat user={this.props.user} room={this.state.rooms[this.state.roomId]} />
             </div>
         )
     }

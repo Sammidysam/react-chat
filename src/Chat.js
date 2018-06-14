@@ -23,6 +23,17 @@ class Chat extends Component {
         })
     }
 
+    shouldComponentUpdate (nextProps, nextState) {
+        base.reset()
+        base.syncState(`${nextProps.room.name}/messages`, {
+            context: this,
+            state: "messages",
+            asArray: true
+        })
+
+        return true
+    }
+
     addMessage = (body) => {
         const messages = [...this.state.messages]
         messages.push({id: messages.length, user: this.props.user, body: body, time: Date.now()})
