@@ -1,15 +1,19 @@
 import React, { Component } from "react"
 import { StyleSheet, css } from "aphrodite"
 
-import { auth, googleProvider } from "./base"
+import { auth, googleProvider, facebookProvider } from "./base"
 
 class SignIn extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
     }
 
-    authenticate = () => {
-      auth.signInWithPopup(googleProvider).then(result => this.props.submit(result.user)).catch((error) => console.log(error))
+    authenticateGoogle = () => {
+      auth.signInWithPopup(googleProvider)
+    }
+
+    authenticateFacebook = () => {
+      auth.signInWithPopup(facebookProvider)
     }
 
     render() {
@@ -30,15 +34,26 @@ class SignIn extends Component {
                 <button
                   type="button"
                   className={css(styles.button)}
-                  onClick={this.authenticate}
+                  onClick={this.authenticateGoogle}
                 >
                 <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
                 Sign in with Google
                 </button>
+
+                <div>or</div>
+
+                                <button
+                  type="button"
+                  className={css(styles.button)}
+                  onClick={this.authenticateFacebook}
+                >
+                <i className={`fab fa-facebook ${css(styles.brandIcon)}`}></i>
+                Sign in with Facebook
+                </button>
               </form>
     
               <div className="blurb">
-                <h2 className={css(styles.h2)}>You"re in good company.</h2>
+                <h2 className={css(styles.h2)}>You're in good company.</h2>
                 <p>Ones of people are already using React Chat!</p>
               </div>
             </main>
