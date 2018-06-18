@@ -21,7 +21,7 @@ class RoomList extends Component {
                 </Link>
                 </div>
                 <ul className={css(styles.ul)}>
-                    {Object.keys(this.props.rooms).map(roomName => <RoomLink key={roomName} room={this.props.rooms[roomName]} changeRoom={this.props.changeRoom} />)}
+                    {Object.keys(this.props.rooms).map(roomName => <RoomLink key={roomName} room={this.props.rooms[roomName]} />)}
                 </ul>
             </nav>
             )} />

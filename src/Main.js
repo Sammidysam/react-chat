@@ -51,10 +51,6 @@ class Main extends Component {
         return this.state.rooms[this.state.currentRoom]
     }
 
-    changeRoom = (room) => {
-        this.setState({ currentRoom: room.name })
-    }
-
     addMessage = (body) => {
         const stateCopy = {...this.state}
         const currentRoomName = this.state.currentRoom
@@ -90,7 +86,7 @@ class Main extends Component {
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} logOut={this.props.logOut} changeRoom={this.changeRoom} addRoom={this.addRoom} />
+                <Sidebar organization={this.props.organization} user={this.props.user} rooms={this.state.rooms} logOut={this.props.logOut} addRoom={this.addRoom} />
 
                 <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} />
             </div>
