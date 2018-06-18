@@ -7,8 +7,8 @@ import Chat from "./Chat"
 import base from "./base"
 
 class Main extends Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
 
         this.state = {
             currentRoom: "general",
@@ -22,6 +22,10 @@ class Main extends Component {
             state: "rooms",
             asArray: false
         })
+
+        this.loadRoom({
+            name: this.props.match.params.roomName
+        })
     }
 
     componentDidUpdate (prevProps) {
@@ -31,6 +35,16 @@ class Main extends Component {
         if (!this.state.rooms[this.state.currentRoom] && roomKeys.length > 0) {
             this.setState({ currentRoom: roomKeys[0] })
         }
+
+        if (prevProps.match.params.roomName !== this.props.match.params.roomName) {
+            this.loadRoom({
+                name: this.props.match.params.roomName
+            })
+        }
+    }
+
+    loadRoom = (room) => {
+        this.setState({ currentRoom: room.name })
     }
 
     currentRoom = () => {
