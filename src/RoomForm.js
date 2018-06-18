@@ -33,7 +33,8 @@ class RoomForm extends Component {
             }
         })
         
-        this.props.history.goBack()
+        // This is a bit weird, as it only works because of setState being a little asynchronous.
+        this.props.history.push(`/rooms/${this.state.room.name}`)
     }
 
     render () {

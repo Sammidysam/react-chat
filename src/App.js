@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 
 import { auth } from "./base"
 
@@ -58,8 +58,14 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/sign-in" component={SignIn} />
-          <Route path="/rooms/:roomName" render={navProps => <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} {...navProps} />} />
+          <Route exact path="/sign-in" render={navProps => (
+            isLoggedIn ? <Redirect to="/rooms/general" /> : <SignIn />
+          )} />
+          <Route path="/rooms/:roomName" render={navProps => (
+            isLoggedIn ?
+            <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} {...navProps} />
+            : <Redirect to="/sign-in" />
+          )}/>
         </Switch>
       </div>
     )
