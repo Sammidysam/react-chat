@@ -1,47 +1,31 @@
 import React, { Component } from "react"
 import { StyleSheet, css } from "aphrodite"
+import { Route, Switch, Link } from "react-router-dom"
 
 import RoomLink from "./RoomLink"
 import RoomForm from "./RoomForm"
 
 class RoomList extends Component {
-    constructor () {
-        super()
-
-        this.state = {
-            showRoomForm: false
-        }
-    }
-
-    showRoomForm = () => {
-        this.setState({ showRoomForm: true })
-    }
-    
-    hideRoomForm = () => {
-        this.setState({ showRoomForm: false })
-    }
-
     render () {
-        if (this.state.showRoomForm) {
-            return <RoomForm hideRoomForm={this.hideRoomForm} addRoom={this.props.addRoom} />
-        } else {
-            return (
+        return (<Switch>
+            <Route path="/rooms/new" render={navProps => (<RoomForm addRoom={this.props.addRoom} {...navProps} />)} />
+            <Route render={() => (
                 <nav className="RoomList" style={this.props.style}>
-                    <div className={css(styles.heading)}>
-                    <h2 className={css(styles.h2)}>Rooms</h2>
-                    <button
-                        className={css(styles.button)}
-                        onClick={this.showRoomForm}
-                    >
-                        <i className="fas fa-plus-circle" title="Add room"></i>
-                    </button>
-                    </div>
-                    <ul className={css(styles.ul)}>
-                        {Object.keys(this.props.rooms).map(roomName => <RoomLink key={roomName} room={this.props.rooms[roomName]} changeRoom={this.props.changeRoom} />)}
-                    </ul>
-                </nav>
-            )
-        }
+                <div className={css(styles.heading)}>
+                <h2 className={css(styles.h2)}>Rooms</h2>
+                <Link
+                    className={css(styles.button)}
+                    to="/rooms/new"
+                >
+                    <i className="fas fa-plus-circle" title="Add room"></i>
+                </Link>
+                </div>
+                <ul className={css(styles.ul)}>
+                    {Object.keys(this.props.rooms).map(roomName => <RoomLink key={roomName} room={this.props.rooms[roomName]} changeRoom={this.props.changeRoom} />)}
+                </ul>
+            </nav>
+            )} />
+        </Switch>)
     }
 }
 
