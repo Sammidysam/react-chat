@@ -32,8 +32,9 @@ class Main extends Component {
         // Check to make sure that our current room is set to something, if it can be.
         const roomKeys = Object.keys(this.state.rooms)
 
-        if (!this.state.rooms[this.state.currentRoom] && roomKeys.length > 0) {
+        if (roomKeys.length > 0 && (!this.state.rooms[this.state.currentRoom] || this.state.rooms[this.state.currentRoom.name !== this.props.match.params.roomName])) {
             this.setState({ currentRoom: roomKeys[0] })
+            this.props.history.push(`/rooms/${roomKeys[0]}`)
         }
 
         if (prevProps.match.params.roomName !== this.props.match.params.roomName) {
