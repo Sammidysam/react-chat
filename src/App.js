@@ -66,6 +66,9 @@ class App extends Component {
             <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} {...navProps} />
             : <Redirect to="/sign-in" />
           )}/>
+          <Route render={navProps => (
+            this.isLoggedIn ? <Redirect to="/rooms/general" /> : <Redirect to="/sign-in" />
+          )} />
         </Switch>
       </div>
     )
