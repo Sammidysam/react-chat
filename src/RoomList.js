@@ -8,7 +8,7 @@ import RoomForm from "./RoomForm"
 class RoomList extends Component {
     render () {
         return (<Switch>
-            <Route path="/rooms/new" render={navProps => (<RoomForm addRoom={this.props.addRoom} {...navProps} />)} />
+            <Route path="/rooms/new" render={navProps => (<RoomForm addRoom={this.props.addRoom} users={this.props.users} {...navProps} />)} />
             <Route render={() => (
                 <nav className="RoomList" style={this.props.style}>
                 <div className={css(styles.heading)}>

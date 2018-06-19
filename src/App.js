@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Route, Switch, Redirect } from "react-router-dom"
 
-import { auth } from "./base"
+import base, { auth } from "./base"
 
 import Main from "./Main"
 import SignIn from "./SignIn"
@@ -13,7 +13,9 @@ class App extends Component {
     super()
 
     this.state = {
-      organization: "XTBC 18"
+      organization: "XTBC 18",
+      user: {},
+      users: {}
     }
   }
 
@@ -29,9 +31,16 @@ class App extends Component {
       else
         this.handleUnauth()
     })
+
+    base.syncState("users", {
+      context: this,
+      state: "users",
+      asArray: false
+    })
   }
 
   logIn = (oathUser) => {
+    // Construct a smaller user object (filter out extraneous info).
     const user = {
       uid: oathUser.uid,
       email: oathUser.email,
@@ -39,7 +48,12 @@ class App extends Component {
       photoURL: oathUser.photoURL
     }
 
-    this.setState({ user })
+    // Update users list.
+    const users = {...this.state.users}
+    users[user.uid] = user
+
+    // Update state and localStorage.
+    this.setState({ user, users })
     localStorage.setItem("user", JSON.stringify(user))
   }
 
@@ -63,7 +77,7 @@ class App extends Component {
           )} />
           <Route path="/rooms/:roomName" render={navProps => (
             isLoggedIn ?
-            <Main organization={this.state.organization} user={this.state.user} logOut={this.logOut} {...navProps} />
+            <Main organization={this.state.organization} user={this.state.user} users={this.state.users} logOut={this.logOut} {...navProps} />
             : <Redirect to="/sign-in" />
           )}/>
           <Route render={navProps => (
