@@ -8,7 +8,7 @@ class MessageList extends Component {
     }
 
     componentDidUpdate (prevProps) {
-        if (prevProps.messages && prevProps.messages.length < this.props.messages.length) {
+        if (prevProps.room.messages && prevProps.room.messages.length < this.props.room.messages.length) {
             this.scrollToBottom()
         }
     }
