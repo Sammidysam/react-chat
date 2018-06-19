@@ -91,10 +91,14 @@ class Main extends Component {
         this.setState({rooms})
     }
 
+    canSeeRoom = (room) => {
+        return room.public || (room.users && this.state.user && room.users.includes(this.state.user.uid))
+    }
+
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={this.state.rooms} logOut={this.props.logOut} addRoom={this.addRoom} />
+                <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={Object.keys(this.state.rooms).filter(r => this.canSeeRoom(this.state.rooms[r])).map(k => this.state.rooms[k])} logOut={this.props.logOut} addRoom={this.addRoom} />
 
                 <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} />
             </div>
