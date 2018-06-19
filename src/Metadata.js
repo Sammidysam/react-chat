@@ -3,10 +3,12 @@ import Moment from "moment"
 
 class Metadata extends Component {
     formatCreatedAt (time) {
+        const moment = Moment(this.props.message.createdAt)
+
         if (new Date(time).getDate() === new Date(Date.now()).getDate())
-            return Moment(this.props.message.createdAt).format("h:mm a")
+            return moment.format("h:mm a")
         else
-            return Moment(this.props.message.createdAt).format("D MMM @ h:mm a")
+            return moment.format("D MMM @ h:mm a")
     }
 
     render () {
