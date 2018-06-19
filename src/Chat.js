@@ -9,7 +9,7 @@ class Chat extends Component {
         if (this.props.room) {
             return (
                 <div className="Chat" style={styles.chat}>
-                    <ChatHeader room={this.props.room} />,
+                    <ChatHeader room={this.props.room} removeRoom={this.props.removeRoom} />,
 
                     <MessageList room={this.props.room} />,
 
