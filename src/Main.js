@@ -85,6 +85,12 @@ class Main extends Component {
         this.setState({rooms, currentRoom: room.name})
     }
 
+    removeRoom = (room) => {
+        const rooms = {...this.state.rooms}
+        rooms[room.name] = null
+        this.setState({rooms})
+    }
+
     render () {
         return (
             <div className="Main" style={styles}>
