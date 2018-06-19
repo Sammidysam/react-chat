@@ -1,10 +1,12 @@
 import React from "react"
 
 const Avatar = ({style, user}) => {
+    const photoURL = user.photoURL || `https://api.adorable.io/avatars/40/${user.email}.png`
+
     return (
         <div
             className="Avatar"
-            style={{...style, ...styles.avatar, backgroundImage: `url(${user.photoURL}`}}
+            style={{...style, ...styles.avatar, backgroundImage: `url(${photoURL}`}}
         ></div>
     )
 }
