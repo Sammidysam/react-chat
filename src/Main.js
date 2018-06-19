@@ -69,7 +69,7 @@ class Main extends Component {
                     id: newKey,
                     user: this.props.user,
                     body: body,
-                    time: Date.now()
+                    createdAt: Date.now()
                 }]
             }
         }
