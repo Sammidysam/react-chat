@@ -1,17 +1,24 @@
-import React from "react"
+import React, { Component } from "react"
 
-const ChatHeader = ({room, removeRoom}) => {
-    return (
-        <div className="ChatHeader" style={styles.chatHeader}>
-            <div className="roomInfo">
-                <h2 style={styles.roomH2}>#{room.name}</h2>
-                <p style={styles.roomP}>{room.description}</p>
+class ChatHeader extends Component {
+    handleClick = () => {
+        if (window.confirm("Are you sure?"))
+            this.props.removeRoom(this.props.room)
+    }
+
+    render () {
+        return (
+            <div className="ChatHeader" style={styles.chatHeader}>
+                <div className="roomInfo">
+                    <h2 style={styles.roomH2}>#{this.props.room.name}</h2>
+                    <p style={styles.roomP}>{this.props.room.description}</p>
+                </div>
+                <button style={styles.button} onClick={() => this.handleClick()}>
+                    <i className="far fa-trash-alt"></i>
+                </button>
             </div>
-            <button style={styles.button} onClick={() => removeRoom(room)}>
-                <i className="far fa-trash-alt"></i>
-            </button>
-        </div>
-    )    
+        )
+    }
 }
 
 const styles = {
