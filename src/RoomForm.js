@@ -32,7 +32,7 @@ class RoomForm extends Component {
 
     handleSelectChange = (selectedValue) => {
       const room = {...this.state.room}
-      room.users = selectedValue
+      room.users = selectedValue.map(v => v.value)
       this.setState({ room })
     }
 
