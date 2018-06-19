@@ -20,11 +20,12 @@ class Main extends Component {
         base.syncState("rooms", {
             context: this,
             state: "rooms",
-            asArray: false
-        })
-
-        this.loadRoom({
-            name: this.props.match.params.roomName
+            asArray: false,
+            then: () => {
+                this.loadRoom({
+                    name: this.props.match.params.roomName
+                })
+            }
         })
     }
 
