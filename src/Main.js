@@ -31,11 +31,15 @@ class Main extends Component {
 
     componentDidUpdate (prevProps) {
         // Check to make sure that our current room is set to something, if it can be.
-        const roomKeys = Object.keys(this.state.rooms)
+        const availableRoomKeys = Object.keys(this.state.rooms).filter(k => this.canSeeRoom(this.state.rooms[k]))
 
-        if (roomKeys.length > 0 && ((!this.state.rooms[this.state.currentRoom] || this.state.rooms[this.state.currentRoom.name !== this.props.match.params.roomName]) && this.props.match.params.roomName !== "new")) {
-            this.setState({ currentRoom: roomKeys[0] })
-            this.props.history.push(`/rooms/${roomKeys[0]}`)
+        // Conditions for forcefully changing the current room:
+        // - a room exists, but we are currently not on it
+        // - we are not allowed to see the currently selected room
+        // make sure not to do this when the room name is "new"
+        if (!availableRoomKeys.includes(this.state.currentRoom) && this.props.match.params.roomName !== "new" && availableRoomKeys.length > 0) {
+            this.setState({ currentRoom: availableRoomKeys[0] })
+            this.props.history.push(`/rooms/${availableRoomKeys[0]}`)
         }
 
         if (prevProps.match.params.roomName !== this.props.match.params.roomName) {
