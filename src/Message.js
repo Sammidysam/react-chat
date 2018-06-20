@@ -20,6 +20,15 @@ class Message extends Component {
         this.setState({ showPicker: !this.state.showPicker })
     }
 
+    displayEmoji = (reaction) => {
+        return (
+            <div key={reaction} className={css(styles.emoji)} onClick={() => this.props.addReaction(this.props.message, reaction)}>
+                <Emoji emoji={reaction} size={16} />
+                {this.props.message.reactions[reaction]}
+            </div>
+        )
+    }
+
     render () {
         return (
             <div className={`Message ${css(styles.message)}`}>
@@ -32,9 +41,11 @@ class Message extends Component {
                     <button className={`reactionButton ${css(styles.reactionButton)}`} onClick={this.togglePicker}>
                         <i className="far fa-smile"></i>
                     </button>
+                    <div className={css(styles.emojiBox)}>
+                        {this.props.message.reactions && Object.keys(this.props.message.reactions).map(r => this.displayEmoji(r))}
+                    </div>
                 </div>
                 {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} onSelect={e => this.props.addReaction(this.props.message, e.colons)} />}
-                {this.props.message.reactions && Object.keys(this.props.message.reactions).map(r => <Emoji key={r} emoji={r} size={16} />)}
             </div>
         )
     }
@@ -69,6 +80,23 @@ const styles = StyleSheet.create({
 
         ":hover": {
             color: "blue"
+        }
+    },
+    emojiBox: {
+        display: "flex",
+        justifyContent: "flex-start"
+    },
+    emoji: {
+        border: "solid",
+        borderWidth: "1px",
+        cursor: "pointer",
+        width: "30px",
+        marginRight: "5px",
+        textAlign: "center",
+        paddingTop: "5px",
+
+        ":hover": {
+            backgroundColor: "#333"
         }
     }
 })
