@@ -13,8 +13,7 @@ class RoomForm extends Component {
                 name: "",
                 description: "",
                 messages: [],
-                public: true,
-                users: []
+                public: true
             }
         }
     }
@@ -32,7 +31,7 @@ class RoomForm extends Component {
 
     handleSelectChange = (selectedValue) => {
       const room = {...this.state.room}
-      room.users = selectedValue.map(v => v.value)
+      room.users = this.props.dms ? selectedValue.value : selectedValue.map(v => v.value)
       this.setState({ room })
     }
 
@@ -44,6 +43,15 @@ class RoomForm extends Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault()
+
+        const room = this.state.room
+        if (this.props.dms) {
+          room.name = `${this.props.user.uid}${room.users}`
+          room.description = `Direct message between ${this.props.user.displayName} and ${this.props.users[room.users].displayName}`
+          room.users = [room.users, this.props.user.uid]
+          room.dm = true
+          room.public = false
+        }
 
         this.props.addRoom(this.state.room)
 
@@ -63,11 +71,12 @@ class RoomForm extends Component {
         return (
             <div className={`RoomForm ${css(styles.roomForm)}`}>
             <main className={css(styles.main)}>
-              <h2 className={css(styles.title)}>Create a room</h2>
+              <h2 className={css(styles.title)}>Create a {this.props.dms ? "direct message" : "room"}</h2>
               <form
                 className={css(styles.form)}
                 onSubmit={this.handleSubmit}
               >
+                {this.props.dms || (<div>
                 <p>
                   <label className={css(styles.label)}>
                     <input type="checkbox" name="public" checked={this.state.room.public} onChange={this.handleChange} />
@@ -98,11 +107,11 @@ class RoomForm extends Component {
                     className={css(styles.input)}
                     onChange={this.handleChange}
                   />
-                </p>
-                {!this.state.room.public && (
+                </p></div>)}
+                {(!this.state.room.public || this.props.dms) && (
                 <div>
-                  <label htmlFor="users" className={css(styles.label)}>Users to add</label>
-                  <Select multi name="users" options={this.users()} value={this.state.room.users} onChange={this.handleSelectChange} />
+                  <label htmlFor="users" className={css(styles.label)}>{this.props.dms ? "With..." : "Users to add"}</label>
+                  <Select name="users" multi={!this.props.dms} options={this.users()} value={this.state.room.users} onChange={this.handleSelectChange} />
                 </div>
                 )}
                 <div className={css(styles.buttonContainer)}>

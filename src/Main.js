@@ -36,8 +36,8 @@ class Main extends Component {
         // Conditions for forcefully changing the current room:
         // - a room exists, but we are currently not on it
         // - we are not allowed to see the currently selected room
-        // make sure not to do this when the room name is "new"
-        if (!availableRoomKeys.includes(this.state.currentRoom) && this.props.match.params.roomName !== "new" && availableRoomKeys.length > 0) {
+        // make sure not to do this when the room name is "new" or "newdm"
+        if (!availableRoomKeys.includes(this.state.currentRoom) && this.props.match.params.roomName !== "new" && this.props.match.params.roomName !== "newdm" && availableRoomKeys.length > 0) {
             this.setState({ currentRoom: availableRoomKeys[0] })
             this.props.history.push(`/rooms/${availableRoomKeys[0]}`)
         }
@@ -84,6 +84,7 @@ class Main extends Component {
     }
 
     addRoom = (room) => {
+        console.log(room)
         const rooms = {...this.state.rooms}
         rooms[room.name] = room
         this.setState({rooms, currentRoom: room.name})
@@ -95,14 +96,30 @@ class Main extends Component {
         this.setState({rooms})
     }
 
+    myRooms = () => {
+        return Object.keys(this.state.rooms).filter(r => (
+            this.canSeeRoom(this.state.rooms[r]) && !this.state.rooms[r].dm
+        )).map(k => (
+            this.state.rooms[k]
+        ))
+    }
+
+    myDMs = () => {
+        return Object.keys(this.state.rooms).filter(r => (
+            this.canSeeRoom(this.state.rooms[r]) && this.state.rooms[r].dm
+        )).map(k => (
+            this.state.rooms[k]
+        ))
+    }
+
     canSeeRoom = (room) => {
-        return room.public || (room.users && this.state.user && room.users.includes(this.state.user.uid))
+        return room.public || (room.users && this.props.user && room.users.includes(this.props.user.uid))
     }
 
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={Object.keys(this.state.rooms).filter(r => this.canSeeRoom(this.state.rooms[r])).map(k => this.state.rooms[k])} logOut={this.props.logOut} addRoom={this.addRoom} />
+                <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={this.myRooms()} dms={this.myDMs()} logOut={this.props.logOut} addRoom={this.addRoom} />
 
                 <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} />
             </div>
