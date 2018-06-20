@@ -15,6 +15,5 @@ Direct messages implemented, but a little bit ugly.
 Next steps:
 - Store full users in the rooms? Would be data duplication
 - Make sure one does not create direct messages with themself
-- Make sure one does not create a room without themselves in it
 
 The class README can also probably suggest other improvements to make.
