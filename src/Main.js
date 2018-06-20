@@ -85,6 +85,12 @@ class Main extends Component {
 
     addRoom = (room) => {
         const rooms = {...this.state.rooms}
+        const { user } = this.props
+
+        // Ensure that the current user is in a private room that they create.
+        if (!room.public)
+            room.users.push(user.uid)
+
         rooms[room.name] = room
         this.setState({rooms, currentRoom: room.name})
     }

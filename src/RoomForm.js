@@ -19,7 +19,10 @@ class RoomForm extends Component {
     }
 
     users = () => {
-      return Object.keys(this.props.users).map(uid => {
+      const users = this.props.users
+      delete users[this.props.user.uid]
+
+      return Object.keys(users).map(uid => {
         const user = this.props.users[uid]
 
         return {
