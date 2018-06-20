@@ -37,9 +37,10 @@ class Main extends Component {
         // - a room exists, but we are currently not on it
         // - we are not allowed to see the currently selected room
         // make sure not to do this when the room name is "new" or "newdm"
-        if (!availableRoomKeys.includes(this.state.currentRoom) && this.props.match.params.roomName !== "new" && this.props.match.params.roomName !== "newdm" && availableRoomKeys.length > 0) {
+        if (!availableRoomKeys.includes(this.state.currentRoom) && this.state.currentRoom !== "new" && this.state.currentRoom !== "newdm" && this.props.match.params.roomName !== "new" && this.props.match.params.roomName !== "newdm" && availableRoomKeys.length > 0) {
             this.setState({ currentRoom: availableRoomKeys[0] })
             this.props.history.push(`/rooms/${availableRoomKeys[0]}`)
+            console.log(this.state.currentRoom)
         }
 
         if (prevProps.match.params.roomName !== this.props.match.params.roomName) {
