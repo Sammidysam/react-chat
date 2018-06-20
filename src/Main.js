@@ -83,6 +83,25 @@ class Main extends Component {
         this.setState(newState)
     }
 
+    addReaction = (message, emojiColons) => {
+        const stateCopy = {...this.state}
+        
+        // Make the reactions storage exist if it does not already.
+        if (!message.reactions)
+            message.reactions = {}
+        
+        // Increment reaction count if it exists, or add it if not.
+        if (Object.keys(message.reactions).includes(emojiColons))
+            message.reactions[emojiColons] = message.reactions[emojiColons] + 1
+        else
+            message.reactions[emojiColons] = 1
+        
+        // Replace the current state message with this one.
+        stateCopy.rooms[this.state.currentRoom].messages[message.id] = message
+
+        this.setState(stateCopy)
+    }
+
     addRoom = (room) => {
         const rooms = {...this.state.rooms}
         const { user } = this.props
@@ -137,7 +156,7 @@ class Main extends Component {
             <div className="Main" style={styles}>
                 <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={this.myRooms()} dms={this.myDMs()} logOut={this.props.logOut} addRoom={this.addRoom} otherUser={this.otherUser} />
 
-                <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} users={this.props.users} otherUser={this.otherUser} />
+                <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} users={this.props.users} otherUser={this.otherUser} addReaction={this.addReaction} />
             </div>
         )
     }

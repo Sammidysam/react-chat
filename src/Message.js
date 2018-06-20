@@ -33,7 +33,7 @@ class Message extends Component {
                     <i className="far fa-smile"></i>
                 </button>
             </div>
-            {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} />}
+            {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} onSelect={e => this.props.addReaction(this.props.message, e.colons)} />}
             </div>
         )
     }
