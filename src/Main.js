@@ -84,7 +84,6 @@ class Main extends Component {
     }
 
     addRoom = (room) => {
-        console.log(room)
         const rooms = {...this.state.rooms}
         rooms[room.name] = room
         this.setState({rooms, currentRoom: room.name})
