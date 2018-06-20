@@ -9,7 +9,7 @@ type Message {
     body: String,
     createdAt: String,
     id: Number,
-    user: User[]
+    user: User
 }
 
 type Room {
