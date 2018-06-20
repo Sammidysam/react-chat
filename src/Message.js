@@ -20,6 +20,11 @@ class Message extends Component {
         this.setState({ showPicker: !this.state.showPicker })
     }
 
+    handleSelect = e => {
+        this.props.addReaction(this.props.message, e.colons)
+        this.togglePicker()
+    }
+
     displayEmoji = (reaction) => {
         return (
             <button key={reaction} className="emoji" onClick={() => this.props.addReaction(this.props.message, reaction)}>
@@ -45,7 +50,7 @@ class Message extends Component {
                         {this.props.message.reactions && Object.keys(this.props.message.reactions).map(r => this.displayEmoji(r))}
                     </div>
                 </div>
-                {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} onSelect={e => this.props.addReaction(this.props.message, e.colons)} />}
+                {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} onSelect={this.handleSelect} />}
             </div>
         )
     }
