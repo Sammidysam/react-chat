@@ -20,3 +20,16 @@ body {
   -webkit-transition: opacity 0.5s ease-out;
   -o-transition: opacity 0.5s ease-out;
 }
+
+.emoji-mart-emoji {
+  vertical-align: bottom;
+}
+
+.emoji:hover {
+  background-color: lightblue;
+  transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  border-radius: 5px;
+}

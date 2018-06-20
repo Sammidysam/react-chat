@@ -22,10 +22,10 @@ class Message extends Component {
 
     displayEmoji = (reaction) => {
         return (
-            <div key={reaction} className={css(styles.emoji)} onClick={() => this.props.addReaction(this.props.message, reaction)}>
-                <Emoji emoji={reaction} size={16} />
-                {this.props.message.reactions[reaction]}
-            </div>
+            <button key={reaction} className="emoji" onClick={() => this.props.addReaction(this.props.message, reaction)}>
+                <span><Emoji emoji={reaction} size={16} /></span>
+                <span>{this.props.message.reactions[reaction]}</span>
+            </button>
         )
     }
 
@@ -87,17 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start"
     },
     emoji: {
-        border: "solid",
-        borderWidth: "1px",
-        cursor: "pointer",
-        width: "30px",
-        marginRight: "5px",
-        textAlign: "center",
-        paddingTop: "5px",
-
-        ":hover": {
-            backgroundColor: "#333"
-        }
+        verticalAlign: "bottom"
     }
 })
 
