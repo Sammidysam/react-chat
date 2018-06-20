@@ -40,7 +40,6 @@ class Main extends Component {
         if (!availableRoomKeys.includes(this.state.currentRoom) && this.state.currentRoom !== "new" && this.state.currentRoom !== "newdm" && this.props.match.params.roomName !== "new" && this.props.match.params.roomName !== "newdm" && availableRoomKeys.length > 0) {
             this.setState({ currentRoom: availableRoomKeys[0] })
             this.props.history.push(`/rooms/${availableRoomKeys[0]}`)
-            console.log(this.state.currentRoom)
         }
 
         if (prevProps.match.params.roomName !== this.props.match.params.roomName) {
