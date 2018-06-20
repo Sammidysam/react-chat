@@ -9,9 +9,9 @@ class Chat extends Component {
         if (this.props.room) {
             return (
                 <div className="Chat" style={styles.chat}>
-                    <ChatHeader room={this.props.room} removeRoom={this.props.removeRoom} />,
+                    <ChatHeader room={this.props.room} removeRoom={this.props.removeRoom} users={this.props.users} user={this.props.user} />,
 
-                    <MessageList room={this.props.room} />,
+                    <MessageList room={this.props.room} users={this.props.users} user={this.props.user} />,
 
                     <MessageForm submit={this.props.addMessage} />
                 </div>

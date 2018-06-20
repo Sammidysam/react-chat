@@ -3,6 +3,11 @@ import React, { Component } from "react"
 import Message from "./Message"
 
 class MessageList extends Component {
+    otherUser = () => {
+        const user = this.props.users[this.props.room.users.filter(u => u !== this.props.user.uid)[0]]
+        return user && user.displayName
+    }
+
     componentDidMount () {
         this.scrollToBottom()
     }
@@ -23,8 +28,8 @@ class MessageList extends Component {
         return (
             <div className="MessageList" style={styles.messageList}>
                 <div className="roomAnnouncement" style={styles.roomAnnouncement}>
-                    <h3 style={styles.h3}>#{this.props.room.name}</h3>
-                    <p>This is the very beginning of the #{this.props.room.name} room.</p>
+                    <h3 style={styles.h3}>{this.props.room.dm ? this.otherUser() : "#" + this.props.room.name}</h3>
+                    <p>This is the very beginning of the {this.props.room.dm ? "direct message with " + this.otherUser() : "#" + this.props.room.name + " room"}.</p>
                 </div>
 
                 {this.props.room.messages && this.props.room.messages.map(message => <Message key={message.id} message={message} />)}

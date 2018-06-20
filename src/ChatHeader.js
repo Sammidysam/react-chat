@@ -1,6 +1,11 @@
 import React, { Component } from "react"
 
 class ChatHeader extends Component {
+    otherUser = () => {
+        const user = this.props.users[this.props.room.users.filter(u => u !== this.props.user.uid)[0]]
+        return user && user.displayName
+    }
+
     handleClick = () => {
         if (window.confirm("Are you sure?"))
             this.props.removeRoom(this.props.room)
@@ -10,7 +15,7 @@ class ChatHeader extends Component {
         return (
             <div className="ChatHeader" style={styles.chatHeader}>
                 <div className="roomInfo">
-                    <h2 style={styles.roomH2}>#{this.props.room.name}</h2>
+                    <h2 style={styles.roomH2}>{this.props.room.dm ? this.otherUser() : "#" + this.props.room.name}</h2>
                     <p style={styles.roomP}>{this.props.room.description}</p>
                 </div>
                 <button style={styles.button} onClick={() => this.handleClick()}>

@@ -121,7 +121,7 @@ class Main extends Component {
             <div className="Main" style={styles}>
                 <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={this.myRooms()} dms={this.myDMs()} logOut={this.props.logOut} addRoom={this.addRoom} />
 
-                <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} />
+                <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} users={this.props.users} />
             </div>
         )
     }
