@@ -114,7 +114,7 @@ class RoomForm extends Component {
                 {(!this.state.room.public || this.props.dms) && (
                 <div>
                   <label htmlFor="users" className={css(styles.label)}>{this.props.dms ? "With..." : "Users to add"}</label>
-                  <Select name="users" multi={!this.props.dms} options={this.users()} value={this.state.room.users} onChange={this.handleSelectChange} />
+                  <Select className={css(styles.input, styles.textInput)} name="users" multi={!this.props.dms} options={this.users()} value={this.state.room.users} onChange={this.handleSelectChange} />
                 </div>
                 )}
                 <div className={css(styles.buttonContainer)}>
@@ -193,6 +193,13 @@ const styles = StyleSheet.create({
       ":focus": {
         outline: 0,
       },
+    },
+
+    textInput: {
+      width: "23rem",
+      margin: "auto",
+      border: 0,
+      fontSize: "1rem"
     },
   
     h2: {
