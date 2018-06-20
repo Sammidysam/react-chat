@@ -34,7 +34,7 @@ class RoomForm extends Component {
 
     handleSelectChange = (selectedValue) => {
       const room = {...this.state.room}
-      room.users = this.props.dms ? selectedValue.value : selectedValue.map(v => v.value)
+      room.users = selectedValue
       this.setState({ room })
     }
 
@@ -49,12 +49,13 @@ class RoomForm extends Component {
 
         const room = this.state.room
         if (this.props.dms) {
-          room.name = `${this.props.user.uid}${room.users}`
-          room.description = `Direct message between ${this.props.user.displayName} and ${this.props.users[room.users].displayName}`
-          room.users = [room.users, this.props.user.uid]
+          const user = this.props.users[room.users.value]
+          room.name = `${this.props.user.uid}${user.uid}`
+          room.description = `Direct message between ${this.props.user.displayName} and ${user.displayName}`
+          room.users = [user, this.props.user]
           room.dm = true
           room.public = false
-        }
+        } 
 
         this.props.addRoom(this.state.room)
 
@@ -62,7 +63,8 @@ class RoomForm extends Component {
             room: {
                 name: "",
                 description: "",
-                messages: []
+                messages: [],
+                public: true
             }
         })
         

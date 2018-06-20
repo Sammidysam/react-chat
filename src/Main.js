@@ -88,8 +88,14 @@ class Main extends Component {
         const { user } = this.props
 
         // Ensure that the current user is in a private room that they create.
-        if (!room.public)
-            room.users.push(user.uid)
+        if (!room.public) {
+            if (room.users) {
+                if (!room.users.map(u => u.uid).includes(this.props.user.uid))
+                    room.users.push(user)
+            } else {
+                room.users = [user]
+            }
+        }
 
         rooms[room.name] = room
         this.setState({rooms, currentRoom: room.name})
@@ -118,11 +124,11 @@ class Main extends Component {
     }
 
     canSeeRoom = (room) => {
-        return room.public || (room.users && this.props.user && room.users.includes(this.props.user.uid))
+        return room.public || (room.users && this.props.user && room.users.map(u => u.uid).includes(this.props.user.uid))
     }
 
     otherUser = (room) => {
-        const user = this.props.users[room.users.filter(u => u !== this.props.user.uid)[0]]
+        const user = room.users.find(u => u.uid !== this.props.user.uid)
         return user && user.displayName
     }
 
