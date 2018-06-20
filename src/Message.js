@@ -33,7 +33,7 @@ class Message extends Component {
                     <i className="far fa-smile"></i>
                 </button>
             </div>
-            {this.state.showPicker && <Picker showPreview={false} />}
+            {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} />}
             </div>
         )
     }
@@ -71,5 +71,11 @@ const styles = StyleSheet.create({
         }
     }
 })
+
+const pickerStyles = {
+    position: "absolute",
+    top: "-20rem",
+    right: "2rem"
+}
 
 export default Message
