@@ -1,4 +1,30 @@
+type User {
+    displayName: String,
+    email: String,
+    photoURL: String,
+    uid: String
+}
+
+type Message {
+    body: String,
+    createdAt: String,
+    id: Number,
+    user: Type[User]
+}
+
+type Room {
+    description: String,
+    name: String,
+    public: Boolean,
+    messages: Type[Message],
+    users: Type[User]
+}
+
 path /users {
+    read() { true }
+}
+
+path /rooms {
     read() { true }
 }
 
