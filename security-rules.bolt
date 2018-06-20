@@ -1,0 +1,8 @@
+path /users {
+    read() { true }
+}
+
+path / {
+    read() { auth != null }
+    write() { auth != null }
+}
