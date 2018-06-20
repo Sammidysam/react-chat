@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { StyleSheet, css } from "aphrodite"
-import { Picker } from "emoji-mart"
+import { Picker, Emoji } from "emoji-mart"
 
 import Avatar from "./Avatar"
 import Metadata from "./Metadata"
@@ -23,17 +23,18 @@ class Message extends Component {
     render () {
         return (
             <div className={`Message ${css(styles.message)}`}>
-            <Avatar user={this.props.message.user} />
-            <div className={`${css(styles.details)}`}>
-                <Metadata message={this.props.message} />
-                <div className="body">
-                {this.props.message.body}
+                <Avatar user={this.props.message.user} />
+                <div className={`${css(styles.details)}`}>
+                    <Metadata message={this.props.message} />
+                    <div className="body">
+                    {this.props.message.body}
+                    </div>
+                    <button className={`reactionButton ${css(styles.reactionButton)}`} onClick={this.togglePicker}>
+                        <i className="far fa-smile"></i>
+                    </button>
                 </div>
-                <button className={`reactionButton ${css(styles.reactionButton)}`} onClick={this.togglePicker}>
-                    <i className="far fa-smile"></i>
-                </button>
-            </div>
-            {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} onSelect={e => this.props.addReaction(this.props.message, e.colons)} />}
+                {this.state.showPicker && <Picker showPreview={false} style={pickerStyles} onSelect={e => this.props.addReaction(this.props.message, e.colons)} />}
+                {this.props.message.reactions && Object.keys(this.props.message.reactions).map(r => <Emoji key={r} emoji={r} size={16} />)}
             </div>
         )
     }
