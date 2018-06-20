@@ -13,7 +13,6 @@ The rooms for an organization can be stored in the organization object similar t
 
 Direct messages implemented, but a little bit ugly.
 Next steps:
-- More helper methods (note that otherUser() is repeated)
 - Store full users in the rooms? Would be data duplication
 - Make sure one does not create direct messages with themself
 - Make sure one does not create a room without themselves in it
