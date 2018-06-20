@@ -116,12 +116,17 @@ class Main extends Component {
         return room.public || (room.users && this.props.user && room.users.includes(this.props.user.uid))
     }
 
+    otherUser = (room) => {
+        const user = this.props.users[room.users.filter(u => u !== this.props.user.uid)[0]]
+        return user && user.displayName
+    }
+
     render () {
         return (
             <div className="Main" style={styles}>
-                <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={this.myRooms()} dms={this.myDMs()} logOut={this.props.logOut} addRoom={this.addRoom} />
+                <Sidebar organization={this.props.organization} user={this.props.user} users={this.props.users} rooms={this.myRooms()} dms={this.myDMs()} logOut={this.props.logOut} addRoom={this.addRoom} otherUser={this.otherUser} />
 
-                <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} users={this.props.users} />
+                <Chat user={this.props.user} room={this.currentRoom()} addMessage={this.addMessage} removeRoom={this.removeRoom} users={this.props.users} otherUser={this.otherUser} />
             </div>
         )
     }

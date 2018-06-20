@@ -22,7 +22,7 @@ class RoomList extends Component {
                 </Link>
                 </div>
                 <ul className={css(styles.ul)}>
-                    {Object.keys(this.props.rooms).map(roomName => <RoomLink key={roomName} room={this.props.rooms[roomName]} dms={this.props.dms} user={this.props.user} users={this.props.users} />)}
+                    {Object.keys(this.props.rooms).map(roomName => <RoomLink key={roomName} room={this.props.rooms[roomName]} dms={this.props.dms} user={this.props.user} users={this.props.users} otherUser={this.props.otherUser} />)}
                 </ul>
             </nav>
             )} />

@@ -3,14 +3,9 @@ import { StyleSheet, css } from "aphrodite"
 import { NavLink } from "react-router-dom"
 
 class RoomLink extends Component {
-    otherUser = () => {
-        const user = this.props.users[this.props.room.users.filter(u => u !== this.props.user.uid)[0]]
-        return user && user.displayName
-    }
-
     render () {
         return (
-            <li className={css(styles.li)}><NavLink to={`/rooms/${this.props.room.name}`} className={this.props.dms ? `${css(styles.lia)}` : `${css(styles.lia)} ${css(styles.before)}`}>{this.props.dms ? this.otherUser() : this.props.room.name}</NavLink></li>
+            <li className={css(styles.li)}><NavLink to={`/rooms/${this.props.room.name}`} className={this.props.dms ? `${css(styles.lia)}` : `${css(styles.lia)} ${css(styles.before)}`}>{this.props.dms ? this.props.otherUser(this.props.room) : this.props.room.name}</NavLink></li>
         )
     }
 }

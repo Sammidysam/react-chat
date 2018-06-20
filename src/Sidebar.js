@@ -3,13 +3,13 @@ import React from "react"
 import RoomList from "./RoomList"
 import UserInfo from "./UserInfo"
 
-const Sidebar = ({user, users, organization, rooms, dms, logOut, addRoom}) => {
+const Sidebar = ({user, users, organization, rooms, dms, logOut, addRoom, otherUser}) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
             <UserInfo style={styles.children} user={user} logOut={logOut}x />
             <h1 style={{...styles.children, ...styles.h1}}>{organization}</h1>
             <RoomList style={styles.children} dms={false} rooms={rooms} users={users} user={user} addRoom={addRoom} />
-            <RoomList style={styles.children} dms={true} rooms={dms} users={users} user={user} addRoom={addRoom} />
+            <RoomList style={styles.children} dms={true} rooms={dms} users={users} user={user} addRoom={addRoom} otherUser={otherUser} />
         </aside>
     )
 }
