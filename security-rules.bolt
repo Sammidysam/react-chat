@@ -9,15 +9,15 @@ type Message {
     body: String,
     createdAt: String,
     id: Number,
-    user: Type[User]
+    user: User[]
 }
 
 type Room {
     description: String,
     name: String,
     public: Boolean,
-    messages: Type[Message],
-    users: Type[User]
+    messages: Message[],
+    users: User[]
 }
 
 path /users {
