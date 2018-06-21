@@ -30,7 +30,7 @@ class Message extends Component {
             <button key={reaction} className="emoji tooltip" onClick={() => this.props.addReaction(this.props.message, reaction)}>
                 <span><Emoji emoji={reaction} size={16} /></span>
                 <span>{this.props.message.reactions[reaction].length}</span>
-                <span className="tooltiptext">{this.props.message.reactions[reaction].map(u => u.displayName).join(", ") + " reacted like this."}</span>
+                <span className="tooltiptext">{this.props.message.reactions[reaction].map(u => u.displayName).join(", ") + ` reacted with ${reaction}.`}</span>
             </button>
         )
     }
