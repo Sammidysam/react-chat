@@ -90,11 +90,13 @@ class Main extends Component {
         if (!message.reactions)
             message.reactions = {}
         
-        // Increment reaction count if it exists, or add it if not.
-        if (Object.keys(message.reactions).includes(emojiColons))
-            message.reactions[emojiColons] = message.reactions[emojiColons] + 1
-        else
-            message.reactions[emojiColons] = 1
+        // Increment reaction count if we have not already reacted.
+        if (Object.keys(message.reactions).includes(emojiColons)) {
+            if (!message.reactions[emojiColons].map(u => u.uid).includes(this.props.user.uid))
+                message.reactions[emojiColons].push(this.props.user)
+        } else {
+            message.reactions[emojiColons] = [this.props.user]
+        }
         
         // Replace the current state message with this one.
         stateCopy.rooms[this.state.currentRoom].messages[message.id] = message

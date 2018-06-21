@@ -10,7 +10,7 @@ type Message {
     createdAt: String,
     id: Number,
     user: User,
-    reactions: Map<String, Number>
+    reactions: Map<String, User[]>
 }
 
 type Room {

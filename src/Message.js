@@ -29,7 +29,7 @@ class Message extends Component {
         return (
             <button key={reaction} className="emoji" onClick={() => this.props.addReaction(this.props.message, reaction)}>
                 <span><Emoji emoji={reaction} size={16} /></span>
-                <span>{this.props.message.reactions[reaction]}</span>
+                <span>{this.props.message.reactions[reaction].length}</span>
             </button>
         )
     }
